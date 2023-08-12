@@ -1,0 +1,292 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+ 
+public class App extends JFrame implements ActionListener,ItemListener{
+    
+   // JFrame f1 ,f2;
+   public static JLabel l1,l2,l3,l4,l5,l6,l7;
+   public static JTextField t1,t2,t3, t4,t5;
+  public static JButton b1,b2,b3;
+    public static  JRadioButton R1,R2,R3, r1,r2,r3;
+    public static JCheckBox  c1,c2,c3,c4;
+    public static JTextArea t7;
+    public static App f;
+  //public static ButtonGroup g;
+   public double base,top,total;
+   String mode; 
+    //JFrame s = new JFrame();
+    
+    //Image img = Toolkit.getDefaultToolkit().getImage("C:\\Users\\Shrish\\Desktop\\PROJECTS\\java");
+   /* public void paintComponent(Graphics g)
+    {
+        super.paintComponent(g);
+        g.drawImage(img,800,800);
+    }*/
+         App(){
+        }/*
+        this.setTitle("WELCOME TO PIZZA HUB");
+        this.setSize(400,400);
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.setLayout(null);
+        this.setTitle("Red");
+        this.setBackground(Color.BLUE);
+        
+        l1=new JLabel("Order number");
+        l1.setBounds(60, 100, 110, 30);
+        this.add(l1);
+        
+        t1=new JTextField();
+        t1.setBounds(160, 100, 110, 30);
+        this.add(t1);
+        
+        l2=new JLabel("Customer name");
+        l2.setBounds(60, 140, 110, 30);
+        this.add(l2);
+        
+        t2=new JTextField();
+        t2.setBounds(160, 140, 110, 30);
+        this.add(t2);
+        
+        l3=new JLabel("Mode of payment");
+        l3.setBounds(60, 180, 110, 30);
+        this.add(l3);
+        
+        t3=new JTextField();
+        t3.setBounds(160, 180, 110, 30);
+        this.add(t3);
+        
+        b1=new JButton("next");
+        b1.setBounds(100, 220, 100, 30);
+        b1.addActionListener(this);
+        this.add(b1);
+        
+       
+        
+        this.setVisible(true);*/
+        
+    
+        public static void main (String []args) {
+            f=new App();
+        f.setTitle("WELCOME TO PIZZA HUB");
+        f.setSize(600,600);
+        f.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        f.setLayout(null);
+        f.setTitle("BILL CALCULATOR");
+        f.setBackground(Color.BLUE);
+        
+         l1=new JLabel("Order number");
+        l1.setBounds(60, 100, 110, 30);
+        f.add(l1);
+        
+        t1=new JTextField();
+        t1.setBounds(160, 100, 110, 30);
+        f.add(t1);
+        
+        l2=new JLabel("Customer name");
+        l2.setBounds(60, 140, 110, 30);
+        f.add(l2);
+        
+        t2=new JTextField();
+        t2.setBounds(160, 140, 110, 30);
+        f.add(t2);
+        
+        l3=new JLabel("Mode of payment");
+        l3.setBounds(60, 180, 110, 30);
+        f.add(l3);
+
+        R1=new JRadioButton("google pay");
+        R1.setBounds(180,180,110,30);
+        f.add(R1);
+        R1.addActionListener(f);
+
+        R2=new JRadioButton("PhonPe");
+        R2.setBounds(300,180,110,30);
+        f.add(R2);
+        R2.addActionListener(f);
+
+        R3=new JRadioButton("Cash");
+        R3.setBounds(420,180,110,30);
+        f.add(R3);
+        R3.addActionListener(f);
+        
+        /*t3=new JTextField();
+        t3.setBounds(160, 180, 110, 30);
+        f.add(t3);*/
+        
+        b1=new JButton("next");
+        b1.setBounds(100, 220, 100, 30);
+        b1.addActionListener(f);
+        f.add(b1);
+        
+       
+        
+        f.setVisible(true);
+            
+            
+        }
+
+    @Override
+    public void actionPerformed(ActionEvent e)
+    {   
+                     
+                if(e.getActionCommand()=="next")
+                {
+                    Frame2();
+                    f.dispose();
+                }
+                if(r1.isSelected())
+                    base=200;
+                    else if(r2.isSelected())
+                         base=300;
+                        else if(r3.isSelected())
+                            base =150;
+                    
+                 if(R1.isSelected())
+                    mode=R1.getActionCommand();
+                    else  if(R2.isSelected())
+                        mode=R2.getActionCommand();
+                        else if(R1.isSelected())
+                             mode=R3.getActionCommand();
+
+                    if(e.getSource()==b2)
+                    {
+                        double amt,tax;
+                        int qty=Integer.parseInt(t4.getText());
+                        int orNo=Integer.parseInt(t1.getText());
+                        amt=(base+top)*qty;
+                        tax=0.1*amt;
+                        String name=t2.getText();
+                        total=amt+tax;
+                        t7.setText("\t\tPizza Hub\n"+"Order No:"+ orNo +"\n"+"Customer'sName:"+name+"\nPayment Mode:"+ mode +"\n**********\n"+"SubTotal:"+ amt + "\n" + "Servicetax:" + tax +"\n" +"Amount Payable is:"+total);
+
+                    }
+                if(e.getSource()==b3)
+                {
+                    r1.setSelected(false);
+                    r2.setSelected(false);
+                    r3.setSelected(false);
+                    c1.setSelected(false);
+                    c2.setSelected(false);
+                    c3.setSelected(false);
+                    c4.setSelected(false);
+                    t4.setText("");
+                    t7.setText("");
+
+                }
+                
+    }
+    public void itemStateChanged(ItemEvent e){
+           
+        if(c1.isSelected())
+            top+=60;
+            else if(c2.isSelected())
+                top+=30;
+                 else if(c3.isSelected())
+                      top+=40;
+                      else if(c4.isSelected())
+                            top+=50;
+    }
+        
+    public static void Frame2(){
+    App f2=new App();
+   
+    
+    f2.setTitle("WELCOME TO PIZZA HUB");
+    f2.setSize(500,500);
+    f2.setDefaultCloseOperation(EXIT_ON_CLOSE);
+    f2.setLayout(null);
+    
+    l4= new JLabel("PIZZA TYPE");
+    l4.setBounds(60, 100, 110, 30);
+    f2.add(l4);
+    
+    r1= new JRadioButton("Pan Pizza");
+    r1.setBounds(60,160,110,30);
+    r1.addActionListener(f2);
+    f2.add(r1);
+
+    
+    r2= new JRadioButton("Stuffed crust");
+    r2.setBounds(60,200,110,30);
+    r2.addActionListener(f2);
+    f2.add(r2);
+    
+    r3= new JRadioButton("Regular");
+    r3.setBounds(60,240,110,30);
+    r3.addActionListener(f2);
+     f2.add(r3);
+    /* g =new ButtonGroup();
+    g.add(r1);
+    g.add(r2);
+    g.add(r3);*/
+    
+    l5= new JLabel("Toppings");
+    l5.setBounds(260, 100, 110, 30);
+    f2.add(l5);
+    
+    c1= new JCheckBox("Onion");
+    c1.setBounds(260,160,110,30);
+    f2.add(c1);
+    c1.addItemListener(f2);
+    
+    c2= new JCheckBox("Cheese");
+    c2.setBounds(260,200,110,30);
+    f2.add(c2);
+    c2.addItemListener(f2);
+    
+    c3= new JCheckBox("Tomato");
+    c3.setBounds(260,240,110,30);
+    f2.add(c3);
+    c3.addItemListener(f2);
+
+    c4= new JCheckBox("Babycorn");
+    c4.setBounds(260,280,110,30);
+    f2.add(c4);
+    c4.addItemListener(f2);
+    
+    l6= new JLabel("Quantity");
+    l6.setBounds(60,360,110,30);
+    f2.add(l6);
+    
+    t4=new JTextField();
+    t4.setBounds(180, 360, 110, 30);
+    f2.add(t4);
+    
+    /*l7= new JLabel("Cost of toppings");
+    l7.setBounds(260,360,110,30);
+    f.add(l6);*/
+    
+   /* t5=new JTextField();
+    t5.setBounds(360, 360, 110, 30);
+    f2.add(t5);*/
+    
+   /* l8= new JLabel("Amount");
+    l8.setBounds(60,410,110,30);
+    f2.add(l8);
+    
+    t6=new JTextField();
+    t6.setBounds(180, 410, 110, 30);
+    f2.add(t6);*/
+
+    
+    b2= new JButton("Generate Bill");
+    b2.setBounds(60,400,110,30);
+    f2.add(b2);
+    b2.addActionListener(f2);
+
+    
+    b3= new JButton("Clear");
+    b3.setBounds(180,400,110,30);
+    f2.add(b3);
+    b3.addActionListener(f2);
+    
+    t7= new JTextArea();
+    t7.setBounds(60,520,600,600);
+    f2.add(t7);
+    
+    f2.setVisible(true);
+    }
+    
+ }
